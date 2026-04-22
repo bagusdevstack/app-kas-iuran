@@ -30,7 +30,7 @@ export default function Dashboard({ auth, payments, expenses, totalKas }) {
         >
             <Head title="Admin Dashboard" />
 
-            <div className="py-12">
+            <div className="py-12 px-4">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
                     {/* Ringkasan Kas */}
