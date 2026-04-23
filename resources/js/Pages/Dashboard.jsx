@@ -4,9 +4,6 @@ import { Head, router } from "@inertiajs/react";
 export default function Dashboard({ auth, reportTable, expenses = [], donations = [], summary, currentYear, yearOptions = [] }) {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
 
-    console.log("Data:", summary);
-
-    // Fungsi untuk mengganti tahun
     const handleYearChange = (e) => {
         router.get(route('dashboard'), { year: e.target.value }, {
             preserveState: true,
@@ -168,7 +165,6 @@ export default function Dashboard({ auth, reportTable, expenses = [], donations 
                                 </tr>
 
                                 {donations.length > 0 ? donations.map((don, idx) => {
-                                    // Ambil index bulan (0-11) dari data donasi
                                     const donDate = new Date(don.date || don.created_at);
                                     const donMonthIndex = donDate.getMonth();
 
@@ -176,17 +172,14 @@ export default function Dashboard({ auth, reportTable, expenses = [], donations 
                                         <tr key={`don-${idx}`} className="hover:bg-amber-50/20 border-b border-gray-100 text-xs">
                                             <td className="p-4 border border-gray-300 text-left vertical-align-top">
                                                 <div className="flex flex-col space-y-0.5">
-                                                    {/* Nama - Rata Kiri */}
                                                     <div className="font-bold text-gray-800 leading-tight">
                                                         {don.warga?.nama || 'Warga'} - {don.warga?.blok}{don.warga?.no_rumah}
                                                     </div>
 
-                                                    {/* Deskripsi - Rata Kiri & Kecil */}
                                                     <div className="text-[10px] text-gray-500 italic leading-tight">
                                                         {don.description || 'Sumbangan/Donasi'}
                                                     </div>
 
-                                                    {/* Tanda Bukti - Rata Kiri & Kecil */}
                                                     {don.proof_image ? (
                                                         <a
                                                             href={`/storage/${don.proof_image}`}
@@ -206,7 +199,6 @@ export default function Dashboard({ auth, reportTable, expenses = [], donations 
                                                 </div>
                                             </td>
 
-                                            {/* Looping 12 kolom bulan */}
                                             {months.map((m, mIdx) => (
                                                 <td key={m} className="p-2 border border-gray-300 text-right">
                                                     {donMonthIndex === mIdx ? (
@@ -233,7 +225,6 @@ export default function Dashboard({ auth, reportTable, expenses = [], donations 
                                     <td colSpan={14} className="p-2 text-left font-bold text-red-700 italic px-4">3. Pengeluaran Kas RT</td>
                                 </tr>
                                 {expenses.length > 0 ? expenses.map((exp, idx) => {
-                                    // Ambil index bulan (0-11) dari data pengeluaran
                                     const expDate = new Date(exp.date || exp.created_at);
                                     const expMonthIndex = expDate.getMonth();
 
@@ -243,10 +234,8 @@ export default function Dashboard({ auth, reportTable, expenses = [], donations 
                                                 {exp.description}
                                             </td>
 
-                                            {/* Looping 12 bulan */}
                                             {months.map((m, mIdx) => (
                                                 <td key={m} className="p-2 border border-gray-300 text-right">
-                                                    {/* Jika index bulan sama, tampilkan nominalnya */}
                                                     {expMonthIndex === mIdx ? (
                                                         <span className="text-red-600 font-bold">
                                                             - {Number(exp.amount).toLocaleString('id-ID')}

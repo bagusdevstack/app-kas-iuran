@@ -3,10 +3,10 @@ import { Head, useForm } from "@inertiajs/react";
 
 export default function Create({ auth, wargas }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        type: 'kas',        // Tambahkan tipe: 'kas' atau 'sumbangan'
+        type: 'kas',
         warga_id: '',
         amount: 50000,
-        description: '',    // Untuk keterangan sumbangan
+        description: '',
         proof_image: null,
     });
 

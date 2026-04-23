@@ -48,7 +48,6 @@ Route::middleware(['auth', 'bendahara'])->group(function () {
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
 
     Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store');
-    // Route::patch('/admin/payments/{id}/approve', [PaymentController::class, 'approve'])->name('admin.payments.approve');
     Route::post('/admin/payments/approve', [PaymentController::class, 'approve'])->name('admin.payments.approve');
     Route::get('/laporan/pdf', [DashboardWargaController::class, 'exportPDF'])->name('laporan.pdf');
     Route::get('/laporan/csv', [DashboardWargaController::class, 'exportCSV'])->name('laporan.csv');
@@ -57,20 +56,8 @@ Route::middleware(['auth', 'bendahara'])->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    // Route::get('/dashboard', function () {
-    //     return Inertia::render('Dashboard');
-    // })->name('dashboard');
-
     Route::get('/dashboard', [DashboardWargaController::class, 'index'])->name('dashboard');
-
-    // Berikan URL yang unik untuk laporan kas
     Route::get('/laporan/bendahara', [DashboardWargaController::class, 'index'])->name('laporan.kas');
-
-    // Route Pembayaran Iuran
-
-    // Route::post('/pembayaran', [PaymentController::class, 'store'])->name('pembayaran.store');
-    // Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
-    // Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
     Route::resource('warga', WargaController::class);
 
     // Route Profile (bawaan breeze)

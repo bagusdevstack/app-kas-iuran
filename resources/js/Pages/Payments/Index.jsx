@@ -3,7 +3,7 @@ import { useForm, Head } from "@inertiajs/react";
 
 export default function PaymentPage({ auth }) {
     const { data, setData, post, processing, errors } = useForm({
-        type: 'kas', // default ke bayar kas
+        type: 'kas',
         amount: '',
         proof_image: null,
         description: '',
@@ -26,16 +26,6 @@ export default function PaymentPage({ auth }) {
                         <div>
                             <label className="block text-sm font-bold text-gray-700 mb-3">Pilih Jenis Pembayaran</label>
                             <div className="grid grid-cols-2 gap-4">
-                                {/* <button
-                                    type="button"
-                                    onClick={() => setData('type', 'kas')}
-                                    className={`py-3 px-4 rounded-xl border-2 font-bold transition-all ${data.type === 'kas'
-                                        ? 'border-blue-600 bg-blue-50 text-blue-600'
-                                        : 'border-gray-100 bg-gray-50 text-gray-400'
-                                        }`}
-                                >
-                                    Bayar Iuran Kas
-                                </button> */}
                                 <button
                                     type="button"
                                     onClick={() => setData('type', 'sumbangan')}

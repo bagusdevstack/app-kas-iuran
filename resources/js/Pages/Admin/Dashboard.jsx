@@ -18,7 +18,7 @@ export default function Dashboard({ auth, payments, expenses, totalKas }) {
     const handleApprove = (proofImage) => {
         if (confirm('Setujui semua pembayaran dengan bukti ini?')) {
             router.post(route('admin.payments.approve'), {
-                proof_image: proofImage // Mengirim string nama file
+                proof_image: proofImage
             });
         }
     };
@@ -42,7 +42,6 @@ export default function Dashboard({ auth, payments, expenses, totalKas }) {
                         <div className="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
                             <p className="text-sm text-gray-500">Informasi Pembayaran</p>
                             <h2 className="text-2xl font-bold text-gray-800">
-                                {/* Logika untuk menghitung User unik */}
                                 {[...new Set(
                                     payments
                                         .filter(p => p.status === 'approved')
@@ -115,7 +114,6 @@ export default function Dashboard({ auth, payments, expenses, totalKas }) {
                                             <td className="p-3 font-medium">{group.user.name}</td>
                                             <td className="p-3">{group.user.no_rumah}</td>
                                             <td className="p-3">
-                                                {/* Menampilkan rentang bulan yang dibayar sekaligus */}
                                                 <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-bold">
                                                     {group.all_months.join(', ')} {group.year}
                                                 </span>

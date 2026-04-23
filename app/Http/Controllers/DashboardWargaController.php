@@ -48,6 +48,7 @@ class DashboardWargaController extends Controller
         $totalDonasiGlobal = Donation::sum('amount');
         $totalExpenseGlobal = Expense::sum('amount');
         $saldoGlobal = ($totalIuranGlobal + $totalDonasiGlobal) - $totalExpenseGlobal;
+        $totalSaldo = ($totalIuranGlobal + $totalDonasiGlobal);
 
         // --- 4. FORMAT DATA TABEL IURAN WARGA ---
         $reportTable = Warga::with(['payments' => function ($query) use ($year) {
@@ -93,6 +94,7 @@ class DashboardWargaController extends Controller
 
                 // Info Keseluruhan (Kas di Tangan)
                 'saldoGlobal' => (float)$saldoGlobal,
+                'totalSaldo' => (float)$totalSaldo,
             ]
         ]);
     }
